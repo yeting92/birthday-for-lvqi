@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 祝吕琪生日快乐！</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: "Microsoft YaHei", sans-serif;
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px 60px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            z-index: 10;
+            max-width: 90%;
+        }
+        .photo {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff6b81;
+            font-size: 40px;
+            margin: 0 0 25px 0;
+        }
+        .wish {
+            font-size: 22px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .sign {
+            color: #ff9a9e;
+            font-size: 19px;
+        }
+
+        /* 右下角音乐提示 —— 加深颜色，更明显 */
+        .music-tip {
+            position: fixed;
+            bottom: 15px;
+            right: 18px;
+            font-size: 14px;
+            color: #ff4d6d; /* 加深变明显 */
+            font-weight: bold;
+            z-index: 999;
+        }
+
+        .heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff6b81;
+            transform: rotate(45deg);
+            animation: float 6s linear infinite;
+            opacity: 0.7;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff6b81;
+            border-radius: 50%;
+        }
+        .heart::before { top: -7.5px; left: 0; }
+        .heart::after { left: 7.5px; top: 0; }
+        @keyframes float {
+            0% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0.7; }
+            100% { transform: rotate(45deg) translateY(-100vh) scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <img src="photo.jpg" class="photo">
+    <h1>🎂 祝吕琪生日快乐！🎂</h1>
+    <p class="wish">愿你永远被温柔以待，每天都能开心的度过，生活顺顺利利，我会一直陪着你呀🥳</p>
+    <p class="sign">—— 烨廷 留</p>
+</div>
+
+<!-- 右下角小字 -->
+<div class="music-tip">点一下页面有音乐听哦😘</div>
+
+<script>
+let musicPlayed = false;
+document.addEventListener('click', () => {
+    if (!musicPlayed) {
+        document.getElementById('bgMusic').play();
+        musicPlayed = true;
+    }
+});
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.bottom = '-50px';
+    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => { heart.remove(); }, 7000);
+}
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
